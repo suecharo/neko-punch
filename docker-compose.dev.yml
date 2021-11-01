@@ -10,10 +10,28 @@ services:
       - ${PWD}:/app
       - /app/node_modules
     environment:
-      - NUXT_HOST=0.0.0.0
-      - NUXT_PORT=3000
+      - CWL_INPUTS_PARSER_URL=https://cwl-inputs-parser.azurewebsites.net
+      - WES_URL=http://localhost:1122
+      - VUE_PORT=3000
     ports:
       - 0.0.0.0:3000:3000
     restart: on-failure
     working_dir: /app
     command: ["sleep", "infinity"]
+  sapporo:
+    image: ghcr.io/sapporo-wes/sapporo-service:1.0.16
+    container_name: sapporo-service-dev
+    volumes:
+      - ${PWD}/run:${PWD}/run
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /tmp:/tmp
+    environment:
+      - SAPPORO_HOST=0.0.0.0
+      - SAPPORO_PORT=1122
+      - SAPPORO_DEBUG=True
+      - SAPPORO_RUN_DIR=${PWD}/run
+    ports:
+      - 0.0.0.0:1122:1122
+    restart: on-failure
+    working_dir: /app
+    command: ["sapporo"]
