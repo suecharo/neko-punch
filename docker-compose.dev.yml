@@ -1,0 +1,19 @@
+version: "3"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    image: neko-punch-dev
+    container_name: neko-punch-dev
+    volumes:
+      - ${PWD}:/app
+      - /app/node_modules
+    environment:
+      - NUXT_HOST=0.0.0.0
+      - NUXT_PORT=3000
+    ports:
+      - 0.0.0.0:3000:3000
+    restart: on-failure
+    working_dir: /app
+    command: ["sleep", "infinity"]
