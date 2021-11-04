@@ -7,12 +7,14 @@ RUN apt update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN npm i -g npm &\
-    npm i -g @vue/cli
+    npm i -g @vue/cli serve
 
 WORKDIR /app
 
 COPY package*.json ./
 RUN npm ci
+
+RUN chmod 777 /app/node_modules/@vue/cli-service/lib/commands/build
 
 ENV CWL_INPUTS_PARSER_URL https://cwl-inputs-parser.azurewebsites.net
 ENV WES_URL http://localhost:1122

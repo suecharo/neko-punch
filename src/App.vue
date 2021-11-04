@@ -1,14 +1,15 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <HelloWorld />
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import Vue from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
+import vuetify from "./plugins/vuetify";
 
-export default defineComponent({
+export default Vue.extend({
   name: "App",
+  vuetify,
   components: {
     HelloWorld,
   },
@@ -16,12 +17,11 @@ export default defineComponent({
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import "https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css";
+@import "https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css";
+/*
+<link
+  href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css"
+  rel="stylesheet"
+/> */
 </style>
